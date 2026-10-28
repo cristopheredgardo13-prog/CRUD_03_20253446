@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:CRUD_20253446" x:Class="CRUD_20253446.MainPage" Title="Aumento de sueldos">
+ <Grid Padding="20" RowDefinitions="Auto,Auto,*" RowSpacing="12">
+ <VerticalStackLayout Grid.Row="0" Spacing="7">
+ <Label Text="Aumento de sueldo del 10 %" FontSize="25" FontAttributes="Bold" />
+ <Label Text="Ejercicio 28 · Carnet 20253446" TextColor="#C9C2D8" />
+ <Label x:Name="ModeLabel" Text="Nuevo trabajador" FontAttributes="Bold" />
+ <Label Text="Nombre del trabajador" /><Entry x:Name="NameEntry" Placeholder="Ejemplo: Ana Pérez" MaxLength="120" />
+ <Label Text="Sueldo actual ($)" /><Entry x:Name="SalaryEntry" Placeholder="Ejemplo: 500.00" Keyboard="Numeric" MaxLength="14" TextChanged="SalaryChanged" />
+ <Label Text="Se aplica un aumento del 10 % a cada trabajador registrado." FontSize="12" TextColor="#C9C2D8" />
+ <Label x:Name="PriceLabel" Text="Aumento (10 %): —" />
+ <Label x:Name="TotalLabel" Text="Nuevo sueldo: —" FontSize="23" FontAttributes="Bold" />
+ <HorizontalStackLayout Spacing="10"><Button x:Name="SaveButton" Text="Guardar" Clicked="SaveClicked" /><Button x:Name="CancelButton" Text="Limpiar" Clicked="CancelClicked" BackgroundColor="#696078" /></HorizontalStackLayout>
+ </VerticalStackLayout>
+ <VerticalStackLayout Grid.Row="1" Spacing="4"><Label x:Name="StatusLabel" Text="Cargando trabajadores…" /><Label Text="Selecciona un trabajador para editarlo o eliminarlo." FontSize="12" /></VerticalStackLayout>
+ <CollectionView Grid.Row="2" x:Name="Records" SelectionMode="Single" SelectionChanged="RecordSelected">
+ <CollectionView.EmptyView><Label Text="Todavía no hay trabajadores guardados." Padding="10" /></CollectionView.EmptyView>
+ <CollectionView.ItemTemplate><DataTemplate x:DataType="local:Trabajador">
+ <Border Padding="12" Margin="0,0,0,8" BackgroundColor="#302A3D" Stroke="#655A7A"><VerticalStackLayout Spacing="4">
+ <Label Text="{Binding Id, StringFormat='Trabajador #{0}'}" FontSize="12" TextColor="#C9C2D8" />
+ <Label Text="{Binding Nombre}" FontSize="18" FontAttributes="Bold" />
+ <Label Text="{Binding Detalle}" /><Label Text="{Binding TotalTexto}" FontAttributes="Bold" FontSize="18" />
+ </VerticalStackLayout></Border>
+ </DataTemplate></CollectionView.ItemTemplate></CollectionView>
+ </Grid>
+</ContentPage>
